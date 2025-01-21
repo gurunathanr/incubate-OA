@@ -11,7 +11,8 @@ class StringToListParser:
             return []
         else:
             list_of_positive_integers = []
-            list_of_int_char = re.split(f"{StringToListParser.COMMA_DELIMITER}|{StringToListParser.NEW_LINE_DELIMITER}", number_string)
+            delimiter, number_string = self.extract_demiliter_and_string(number_string)
+            list_of_int_char = re.split(delimiter, number_string)
             for numeric_string in list_of_int_char:
                 integer = int(numeric_string)
                 if integer < 0:
@@ -19,3 +20,11 @@ class StringToListParser:
                 else:
                     list_of_positive_integers.append(integer)
             return list_of_positive_integers
+        
+    def extract_demiliter_and_string(self, string: str):
+        if string.startswith("//"):
+            delimiter_str, numbers_string = string.split('\n', 2)
+            delimiter_str = delimiter_str.replace('//', '')
+            return delimiter_str, numbers_string
+        else:
+            return f"{StringToListParser.COMMA_DELIMITER}|{StringToListParser.NEW_LINE_DELIMITER}", string
