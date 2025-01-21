@@ -25,6 +25,10 @@ class StringToListParser:
         if string.startswith("//"):
             delimiter_str, numbers_string = string.split('\n', 2)
             delimiter_str = delimiter_str.replace('//', '')
-            return delimiter_str, numbers_string
+            delimiters = delimiter_str.split("][")
+            delimiters_with_separator = "|".join(delimiters)
+            delimiters_with_separator = delimiters_with_separator.replace('[', '')
+            delimiters_with_separator = delimiters_with_separator.replace(']', '')
+            return delimiters_with_separator, numbers_string
         else:
             return f"{StringToListParser.COMMA_DELIMITER}|{StringToListParser.NEW_LINE_DELIMITER}", string

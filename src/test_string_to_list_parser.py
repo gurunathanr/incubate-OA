@@ -79,5 +79,15 @@ class TestStringToListParser(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
+    def test_should_return_semicolon_and_colon_when_number_string_has_semicolon_and_colon_as_separator_in_format(self):
+        number_str = "//[;][:]\n1;2:3"
+        expected_delimiter = ";|:"  
+        expected_number_string = "1;2:3"    
+
+        actual_delimiter, actual_number_string = StringToListParser().extract_demiliter_and_string(number_str)
+
+        self.assertEqual(expected_delimiter, actual_delimiter)
+        self.assertEqual(expected_number_string, actual_number_string)
+
 if __name__ == "__main__":
     unittest.main()
