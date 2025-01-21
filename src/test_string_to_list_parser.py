@@ -27,6 +27,14 @@ class TestStringToListParser(unittest.TestCase):
         actual = StringToListParser().parse(number_str)
 
         self.assertEqual(expected, actual)
+
+    def test_should_return_array_with_1_2_when_number_string_is_1_2(self):
+        number_str = "1,2"
+        expected = [1,2]
+
+        actual = StringToListParser().parse(number_str)
+
+        self.assertEqual(expected, actual)
  
 if __name__ == "__main__":
     unittest.main()
