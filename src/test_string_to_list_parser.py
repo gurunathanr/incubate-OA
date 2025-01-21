@@ -43,5 +43,12 @@ class TestStringToListParser(unittest.TestCase):
         with self.assertRaises(NegativeIntegerException):
              StringToListParser().parse(number_str)
  
+    def test_should_return_array_with_1_2_3_when_number_string_is_1_2_3_with_comma_new_line_separators(self):
+        number_str = "1\n2,3"
+        expected = [1,2,3]
+
+        actual = StringToListParser().parse(number_str)
+
+        self.assertEqual(expected, actual)
 if __name__ == "__main__":
     unittest.main()
